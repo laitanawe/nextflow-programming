@@ -165,7 +165,7 @@ process fastqc {
 }
 
 process multiqc {
-  
+
     publishDir params.outdir, mode: 'copy'
 
     input:
@@ -211,6 +211,7 @@ read_pairs_flat_ch.view()
     multiqc( fastqc.out.mix( quant.out ).collect() )
 
 }
+
 ~~~~
 {: .language-groovy}
 
