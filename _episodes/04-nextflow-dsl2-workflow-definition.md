@@ -5,14 +5,14 @@ exercises: 10
 questions:
 - "What are the main differences between a Nextflow DSL2 and DSL1 process?"
 - "What are the main components of a Nextflow DSL2 pipeline?"
-- "How do I run a Nextflow pipeline?"
+- "How do I run a Nextflow DSL2 pipeline?"
 objectives:
 - "Explain the benefits of using Nextflow DSL2 to develop pipelines."
 - "Explain the components of a Nextflow DSL2 process, pipeline."
 - "Run a Nextflow DSL2 pipeline."
 keypoints:
-- "A DSL2 workflow is a sequence of tasks that process a set of data."
-- "In Nextflow DSL2 processes, the process definition is no longer tied to specific channels and so, it can be used independently. This enables reuse of DSL2 components. From some module, we can include DSL2 processes in a workflow."
+- "A DSL2 workflow is a sequence of tasks that processes a set of data."
+- "In Nextflow DSL2 processes, the process definition is no longer tied to specific channels (as in DSL1) and so, a DSL2 module can be used independently. This enables reuse of DSL2 components. From some module, we can include DSL2 processes in a workflow."
 - "You run Nextflow DSL2 modules and pipelines using the `nextflow run` command."
 ---
 

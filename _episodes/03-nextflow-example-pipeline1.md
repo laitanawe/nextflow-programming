@@ -147,6 +147,7 @@ process quant {
 }
 
 process fastqc {
+
     tag "FASTQC on $sample_id"
     publishDir params.outdir
 
@@ -164,6 +165,7 @@ process fastqc {
 }
 
 process multiqc {
+  
     publishDir params.outdir, mode: 'copy'
 
     input:
