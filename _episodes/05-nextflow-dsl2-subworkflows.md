@@ -203,7 +203,7 @@ To run a Nextflow script use the command `nextflow run <script_name>`.
 > > 1. The first line shows the Nextflow version number.
 > > 1. The second line shows the run name `fervent_babbage` (adjective and scientist name) and revision id `c54a707593`.
 > > 1. The third line tells you the process has been executed locally (`executor >  local`).
-> > 1. The next line shows the log info followed by the process ids e.g. `51/a6b821`, process name, number of cpus, percentage task completion, and how many instances of the process have been run.
+> > 1. The next line shows the log info followed by the process ids e.g. `51/a6b821`, process name, number of cpus, percentage task completion, and how many instances of the process have been run. Take note of subworkflow process names rnaseq_sub:index, rnaseq_sub:fastqc, and rnaseq_sub:quant.
 > > 1. The final line is the output of the `view` operator.
 > {: .solution}
 {: .challenge}
