@@ -59,21 +59,21 @@ This is a Nextflow subworkflow (./rnaseq_mods.nf) performing the following steps
     include { index } from './modules/index' // './modules/some_module' //Cut and Paste index block into ./modules/index.nf
     include { quant } from './modules/quant' // './modules/other_module' //Cut and Paste index block into ./modules/quant.nf
     include { fastqc } from './modules/fastqc' // './modules/another_more_module' //Cut and Paste index block into ./modules/fastqc.nf
-    include { multiqc } from './modules/multiqc' // './modules/one_more_module' //Cut and Paste index block into ./modules/multiqc.nf
+    include { multiqc } from './modules/multiqc' // './modules/one_more_module' //Cut and Paste index block into ./modules/multiqc.nf. You can also include as an alias e.g. include { multiqc as multiqc_rep } from './modules/multiqc'
 
 //  The default subworkflow
 workflow rnaseq_sub {
 
-take:
+take:                               // Input data.
   transcriptome
   read_pairs_ch
 
-main:
+main:                               // Specify the steps. Each step is typically a Nextflow module/process.
   index( transcriptome )
   fastqc( read_pairs_ch )
   quant( index.out, read_pairs_ch )
 
-emit:
+emit:                               // Output(s) of the subworkflow.
   fastqc.out.mix( quant.out ).collect()
 }
 

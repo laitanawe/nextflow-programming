@@ -90,6 +90,11 @@ outdir        : ${params.outdir}
 // For execution caching / resume, you can do: nextflow run script.nf -with-docker repo_name/image:tag -resume
 // For more cpus, you can do: nextflow run script.nf -with-docker repo_name/image:tag -process.cpus 4
 
+/* Module: a single atomic process or Nf script containing 1+ processes that can be imported from another Nf script.
+   Sub-workflow: a few chained modules or Nf script containing 1+ processes that can be imported from another Nf script.
+   Workflow: an end-to-end pipeline.
+   A process/sub-workflow/workflow can be a module.
+*/
 /*  A Nextflow process block, using include statements:
     Curly brackets are mandatory in include statements, so you can include specific/multiple processes from a file e.g.
     include { index; quant } from './modules/quant'
