@@ -73,11 +73,13 @@ outdir        : ${params.outdir}
     Usage:
        nextflow run wc.nf --input <input_file>
 
-    Multi-line comments start with a slash asterisk /* and finish with an asterisk slash. */
+    Multi-line comments start with a slash asterisk /* and finish with an asterisk slash.
+    */
 //  Single line comments start with a double slash // and finish on the same line
 
 /*  Workflow parameters are written as params.<parameter>
-    and can be initialised using the `=` operator. */
+    and can be initialised using the `=` operator.
+    */
 // There is a docker container with salmon in: https://hub.docker.com/r/nextflow/rnaseq-nf
 // To execute by using docker by default and skip -with-docker at the cmd line, add this to your config: docker.enabled = true
 // In your nextflow.config file: process.container = 'nextflow/rnaseq-nf'
@@ -88,9 +90,12 @@ outdir        : ${params.outdir}
 // For execution caching / resume, you can do: nextflow run script.nf -with-docker repo_name/image:tag -resume
 // For more cpus, you can do: nextflow run script.nf -with-docker repo_name/image:tag -process.cpus 4
 
-/*  A Nextflow process block
-    Process names are written, by convention, in uppercase but it could also be in lowercase.
-    This convention is used to enhance workflow readability. */
+/*  A Nextflow process block, using include statements:
+    Curly brackets are mandatory in include statements, so you can include specific/multiple processes from a file e.g.
+    include { index; quant } from './modules/quant'
+    from ./some_module or from ./some_module.nf or from /some/module
+    The .nf is optional but the path to the module file has to be relative or absolute
+    */
 
     include { index } from './modules/index' // './modules/some_module' //Cut and Paste index block into ./modules/index.nf
     include { quant } from './modules/quant' // './modules/other_module' //Cut and Paste index block into ./modules/quant.nf

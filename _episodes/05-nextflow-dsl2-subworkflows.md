@@ -3,17 +3,17 @@ title: "Nextflow DSL2 Subworkflow Definition"
 teaching: 50
 exercises: 10
 questions:
-- "What are the main features of a Nextflow module?"
-- "What are the main components of a Nextflow pipeline?"
-- "How do I run a Nextflow pipeline?"
+- "What are the main features of a subworkflowin Nextflow DSL2?"
+- "What are the main components of a subworkflow in Nextflow DSL2?"
+- "How do I run a subworkflow in Nextflow DSL2?"
 objectives:
-- "Explain the benefits of using Nextflow to develop pipelines."
-- "Explain the components of a Nextflow process, pipeline."
-- "Run a Nextflow pipeline."
+- "Explain the benefits of using subworkflows to develop pipelines in Nextflow DSL2."
+- "Explain the components of a subworkflow, pipeline in Nextflow DSL2."
+- "Run a subworkflow in Nextflow DSL2."
 keypoints:
-- "A workflow is a sequence of tasks that process a set of data."
-- "Nextflow scripts comprise of channels for controlling inputs and outputs, and processes for defining workflow tasks."
-- "You run Nextflow modules and pipelines using the `nextflow run` command."
+- "A subworkflow is a sequence of tasks that process a set of data."
+- "Nextflow DSL2 scripts comprise of channels for controlling inputs and outputs, and processes for defining workflow tasks."
+- "You run Nextflow subworkflows and modules and pipelines using the `nextflow run` command."
 ---
 
 ## Our example script
