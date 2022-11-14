@@ -185,11 +185,18 @@ To run a Nextflow script use the command `nextflow run <script_name>`.
 > >
 > > ~~~
 > > N E X T F L O W  ~  version 20.10.0
-> > Launching `main.nf` [fervent_babbage] - revision: c54a707593
-> > executor >  local (1)
-> > [21/b259be] process > NUM_LINES (1) [100%] 1 of 1 ✔
-> >
-> >  ref1_1.fq.gz 58708
+> > Launching `main.nf` [sleepy_avogadro] DSL2 - revision: 83e5d597be
+> > RNASEQ NEXTFLOW PIPELINE uses the ffg bioinformatics tools: Salmon, FastQC, MultiQC
+> > transcriptome : /home/aweo/Desktop/nfdemo/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa
+> > reads         : /home/aweo/Desktop/nfdemo/data/ggal/ggal_gut_{1,2}.fq
+> > outdir        : results
+> > executor >  local (4)
+> > [51/a6b821] process > rnaseq_sub:index (ggal_1_48850000_49020000) [100%] 1 of 1 ✔
+> > [0c/1f6c84] process > rnaseq_sub:fastqc (FASTQC on ggal_gut)      [100%] 1 of 1 ✔
+> > [46/a7019e] process > rnaseq_sub:quant (1)                        [100%] 1 of 1 ✔
+> > [7c/2f055d] process > multiqc                                     [100%] 1 of 1 ✔
+> > [ggal_gut, [/home/aweo/Desktop/nfdemo/data/ggal/ggal_gut_1.fq, /home/aweo/Desktop/nfdemo/data/ggal/ggal_gut_2.fq]]
+> > [ggal_gut, /home/aweo/Desktop/nfdemo/data/ggal/ggal_gut_1.fq, /home/aweo/Desktop/nfdemo/data/ggal/ggal_gut_2.fq]
 > > ~~~
 > > {: .output}
 > >
