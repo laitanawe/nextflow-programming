@@ -1,9 +1,9 @@
 ---
-title: "Nextflow DSL2 Subworkflow Definition"
+title: "Nextflow DSL2 Subworkflows"
 teaching: 50
 exercises: 10
 questions:
-- "What are the main features of a subworkflowin Nextflow DSL2?"
+- "What are the main features of a subworkflow in Nextflow DSL2?"
 - "What are the main components of a subworkflow in Nextflow DSL2?"
 - "How do I run a subworkflow in Nextflow DSL2?"
 objectives:

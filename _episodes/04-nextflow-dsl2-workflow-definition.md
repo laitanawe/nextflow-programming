@@ -1,5 +1,5 @@
 ---
-title: "Nextflow DSL Workflow Definition"
+title: "Nextflow DSL2 Workflow Definition"
 teaching: 50
 exercises: 10
 questions:
