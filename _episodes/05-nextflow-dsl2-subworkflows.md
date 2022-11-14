@@ -78,7 +78,7 @@ emit:
 }
 
 
-// Copy from the shebang line to the end so that your main.nf now looks like this:
+// Copy from the shebang line to the end so that your main.nf script now looks like this:
 
 #!/usr/bin/env nextflow
 
