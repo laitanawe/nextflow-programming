@@ -78,7 +78,7 @@ emit:
 }
 
 
-// Your main.nf should now look like this:
+// Copy from the shebang line to the end so that your main.nf now looks like this:
 
 #!/usr/bin/env nextflow
 
@@ -132,7 +132,7 @@ outdir        : ${params.outdir}
 // For execution caching / resume, you can do: nextflow run script.nf -with-docker repo_name/image:tag -resume
 // For more cpus, you can do: nextflow run script.nf -with-docker repo_name/image:tag -process.cpus 4
 
-/*  A Nextflow process block
+/*  A Nextflow include line for the subworkflow block
     Process names are written, by convention, in uppercase but it could also be in lowercase.
     This convention is used to enhance workflow readability. */
 
@@ -163,7 +163,7 @@ read_pairs_flat_ch.view()
     The operator, .collect() flattens a list and converts it into a single element/item leading to one task in the process.
      */
 
-    rnaseq_sub( transcriptome, read_pairs_ch )
+    rnaseq_sub( params.transcriptome, read_pairs_ch )
     multiqc( rnaseq_sub.out )
 
 }
