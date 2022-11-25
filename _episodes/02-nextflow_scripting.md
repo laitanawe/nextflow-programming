@@ -293,6 +293,9 @@ nextflow.enable.dsl = 2
 
 process testme {
 
+// process directives should go here. You can specify a different container for each process in your workflow.
+// container '/path/to/container/image.sif'
+
 input:
  val mystr
 
