@@ -355,6 +355,89 @@ Our Script Works!
 
 **Note:** Variable names inside single quoted strings do not support String interpolation.
 
+**Note:** You can save the following Nextflow script as wc.nf
+
+~~~
+#!/usr/bin/env nextflow
+
+nextflow.enable.dsl = 2
+
+/*  Comments are uninterpreted text included with the script.
+    They are useful for describing complex parts of the workflow
+    or providing useful information such as workflow usage.
+
+    Usage:
+       nextflow run wc.nf --input <input_file>
+
+    Multi-line comments start with a slash asterisk /* and finish with an asterisk slash. */
+//  Single line comments start with a double slash // and finish on the same line
+
+/*  Workflow parameters are written as params.<parameter>
+    and can be initialised using the `=` operator. */
+params.input = "data/ggal/ref1.fa"
+
+//  The default workflow
+
+workflow {
+
+    //  Input data is received through channels
+    input_ch = Channel.fromPath(params.input)
+
+    /*  The script to execute is called by its process name,
+        and input is provided between brackets. */
+    NUM_LINES(input_ch)
+
+    /*  Process output is accessed using the `out` channel.
+        The channel operator view() is used to print
+        process output to the terminal. */
+    NUM_LINES.out.view()
+}
+
+/*  A Nextflow process block
+    Process names are written, by convention, in uppercase.
+    This convention is used to enhance workflow readability. */
+process NUM_LINES {
+
+    // directives like cpus, memory can go here:
+    cpus 2
+    memory '2 GB'
+    time '1 h'
+
+    input:
+    path read
+
+    output:
+    stdout
+
+    script:
+    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries.
+    """
+    printf '${read}'
+    echo
+    mycnt=\$(cat '${read}' | wc -l)
+    echo Number of lines: \$mycnt and Number of cpus: $task.cpus
+
+    echo my_script -m $task.memory -n $task.cpus -t $task.time
+    """
+}
+
+~~~
+{: .language-groovy }
+
+~~~
+
+N E X T F L O W  ~  version 22.10.1
+Launching `wc.nf` [festering_mcclintock] DSL2 - revision: 5c81d9b499
+executor >  local (1)
+[0f/bb3762] process > NUM_LINES (1) [100%] 1 of 1 ✔
+ref1.fa
+Number of lines: 2852 and Number of cpus: 2
+my_script -m 2 GB -n 2 -t 1h
+
+~~~
+{: .output }
+
+
 ## Lists
 
 To store multiple values in a variable we can use a List.

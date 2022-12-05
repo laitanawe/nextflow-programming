@@ -84,67 +84,6 @@ Configuration can be written in either of two ways. The first is using
 dot notation, and the second is using brace notation. Both forms
 of notation can be used in the same configuration file.
 
-<b>Take note</b>: The parameters defined in the nextflow.config file overrides the default parameters inside your nextflow script! However, the command-line parameters even override the nextflow.config file!
-By default, we are running local executor but you can configure your processes to use other executors (slurm, sge, awsbatch, google-lifesciences).
-Nextflow requires a shared storage to exchange data between tasks.
-// defines execution profiles for different environments
-
-profiles {
-  slurm {
-    process.container = 'nextflow/rnaseq-nf:latest'
-    process.executor = 'slurm'
-    singularity.enabled = true
-  }
-  standard {
-    process.container = 'nextflow/rnaseq-nf:latest'
-  }
-  awsbatch {
-    process.executor = 'awsbatch'
-    process.queue = 'nextflow-ci'
-    process.container = 'nextflow/rnaseq-nf:latest'
-    workDir = 's3://nextflow-ci/work/'
-    aws.region = 'eu-west-1'
-    aws.batch.cliPath = '/home/ec2-user/miniconda/aws'
-    params.reads = 's3://rnaseq-nf/data/ggal/lung_{1,2}.fq'
-    params.transcriptome = 's3://rnaseq-nf/data/ggal/transcript.fa'
-  }
-  's3-data'{
-    process.container = 'nextflow/rnaseq-nf:latest'
-    params.reads = 's3://rnaseq-nf/data/ggal/lung_{1,2}.fq'
-    params.transcriptome = 's3://rnaseq-nf/data/ggal/transcript.fa'    
-  }
-  gls {
-    process.executor = 'google-lifesciences'
-    process.container = 'nextflow/rnaseq-nf:latest'
-    workDir = 'gs://nfdemo/scratch' // <- replace with your own bucket!
-    google.region = 'europe-west2'
-    params.transcriptome = 'gs://rnaseq-nf/data/ggal/transcript.fa'
-    params.reads = 'gs://rnaseq-nf/data/ggal/gut_{1,2}.fq'
-    params.transcriptome = 'gs://rnaseq-nf/data/multiqc'
-  }
-  conda {
-    process.conda = "$baseDir/conda.yml"
-  }
-}
-
-aws {
-    accessKey = <YOUR S3 ACCESS KEY>
-    secretKey = <YOUR S3 SECRET KEY>
-    region = <AWS REGION IDENTIFIER>
-}
-google {
-    project = 'YOUR PROJECT ID HERE'
-    location = 'us-central1'
-}
-
-To run your Nexflow script with awsbatch, you can use:
-$ nextflow run main.nf -profile awsbatch
-
-script:
-   """
-   my_script -m $task.memory -n $task.cpus -t $task.time
-   """
-
 An example of dot notation:
 ~~~
 params.input = ''             // The workflow parameter "input" is assigned an empty string to use as a default value
@@ -326,7 +265,7 @@ specific process or group of processes.
 
 The resources for a specific process can be defined using `withName:`
 followed by the process name ( either the simple name e.g., `'FASTQC'`,
-or the fully qualified name e.g., `'NFCORE_RNASEQ:RNA_SEQ:SAMTOOLS_SORT'`),
+or the fully qualified name e.g., `'NF_RNASEQ:RNA_SEQ:SAMTOOLS_SORT'`),
 and the directives within curly braces.
 For example, we can specify different `cpus` and `memory` resources
 for the processes `INDEX` and `FASTQC` as follows:
@@ -409,94 +348,11 @@ or `FASTQC`.
 - The `!` inverts a selector, e.g., `withLabel: '!small_mem'` applies
 the configuration to any process without the `small_mem` label.
 - The `.*` matches any number of characters, e.g.,
-`withName: 'NFCORE_RNASEQ:RNA_SEQ:BAM_SORT:.*'` matches all processes
-of the workflow `NFCORE_RNASEQ:RNA_SEQ:BAM_SORT`.
+`withName: 'NF_RNASEQ:RNA_SEQ:BAM_SORT:.*'` matches all processes
+of the workflow `NF_RNASEQ:RNA_SEQ:BAM_SORT`.
 
 A regular expression cheat-sheet can be found
-[here](https://www.jrebel.com/system/files/regular-expressions-cheat-sheet.pdf) if you would like to
-write more expressive expressions.
-
-#### Selector priority
-
-When mixing generic process configuration and selectors, the following
-priority rules are applied (from highest to lowest):
-
-1. `withName` selector definition.
-1. `withLabel` selector definition.
-1. Process specific directive defined in the workflow script.
-1. Process generic `process` configuration.
-
-> ## Process selectors
->
-> Create a Nextflow config, `process-selector.config`, specifying
-> different `cpus` and `memory` resources for the two processes
-> `P1` (cpus 1 and memory 2.GB) and
-> `P2` (cpus 2 and memory 1.GB),
-> where `P1` and `P2` are defined as follows:
->
-> ~~~
-> // process-selector.nf
-> nextflow.enable.dsl=2
->
-> process P1 {
->     echo true
->
->     script:
->     """
->     echo P1: Using $task.cpus cpus and $task.memory memory.
->     """
-> }
->
-> process P2 {
->     echo true
->
->     script:
->     """
->     echo P2: Using $task.cpus cpus and $task.memory memory.
->     """
-> }
->
-> workflow {
->    P1()
->    P2()
-> }
-> ~~~
-> {: .language-groovy }
->
-> > ## Solution
-> > ~~~
-> > // process-selector.config
-> > process {
-> >     withName: P1 {
-> >         cpus = 1
-> >         memory = 2.GB
-> >     }
-> >     withName: P2 {
-> >         cpus = 2
-> >         memory = 1.GB
-> >     }
-> > }
-> > ~~~
-> > {: .language-groovy}
-> > ~~~
-> > $ nextflow run process-selector.nf -c process-selector.config -process.echo
-> > ~~~
-> > {: .language-bash}
-> > ~~~
-> > N E X T F L O W  ~  version 21.04.0
-> >
-> > Launching `process-selector.nf` [clever_borg] -
-> > revision: e765b9e62d
-> > executor >  local (2)
-> > [de/86cef0] process > P1 [100%] 1 of 1 ✔
-> > [bf/8b332e] process > P2 [100%] 1 of 1 ✔
-> > P2: Using 2 cpus and 1 GB memory.
-> >
-> > P1: Using 1 cpus and 2 GB memory.
-> > ~~~
-> >  {: .output}
-> {: .solution}
-{: .challenge}
+[here](https://www.jrebel.com/system/files/regular-expressions-cheat-sheet.pdf) if you would like to write more expressive expressions.
 
 #### Dynamic expressions
 
@@ -594,122 +450,6 @@ allowing the use of process selectors to manage which processes
 load which software environment. Each technology also has its own
 scope to provide further technology specific configuration settings.
 
-### Software configuration using Conda
-
-Conda is a software package and environment management system that runs on
-Linux, Windows, and Mac OS. Software packages are bundled into
-Conda environments along with their dependencies for a particular
-operating system (Not all software is supported on all operating systems).
-Software packages are tied to conda channels, for example,
-bioinformatic software packages are found and installed
-from the BioConda channel.
-
-A Conda environment can be configured in several ways:
-- Provide a path to an existing Conda environment.
-- Provide a path to a Conda environment specification file (written in YAML).
-- Specify the software package(s) using the
-`<channel>::<package_name>=<version>` syntax (separated by spaces),
-which then builds the Conda environment when the process is run.
-
-~~~
-process {
-    conda = "/home/user/miniconda3/envs/my_conda_env"
-    withName: FASTQC {
-        conda = "environment.yml"
-    }
-    withName: SALMON {
-        conda = "bioconda::salmon=1.5.2"
-    }
-}
-~~~
-{: .language-groovy }
-
-There is an optional `conda` scope which allows you to control the
-creation of a Conda environment by the Conda package manager.
-For example, `conda.cacheDir` specifies the path where the Conda
-environments are stored. By default this is in `conda` folder of the `work` directory.
-
-> ## Define a software requirement in the configuration file using conda
->
-> Create a config file for the Nextflow script `configuration_fastp.nf`.
-> Add a conda directive for the process name `FASTP` that includes the bioconda package `fastp`, version 0.12.4-0.
-> **Hint** You can specify the conda packages using the syntax `<channel>::<package_name>=<version>` e.g. `bioconda::salmon=1.5.2`
-> Run the Nextflow script `configure_fastp.nf` with the configuration file using the `-c` option.
->
-> ~~~
-> // configuration_fastp.nf
-> nextflow.enable.dsl = 2
->
-> params.input = "data/yeast/reads/ref1_1.fq.gz"
->
-> workflow {
->     FASTP( Channel.fromPath( params.input ) ).view()
-> }
->
-> process FASTP {
->
->    input:
->    path read
->
->    output:
->    stdout
->
->    script:
->    """
->    fastp -A -i ${read} -o out.fq 2>&1
->    """
-> }
-> ~~~
-> {: .language-groovy }
->
-> > ## Solution
-> > ~~~
-> > // fastp.config
-> > process {
-> >     withName: 'FASTP' {
-> >         conda = "bioconda::fastp=0.12.4-0"
-> >     }
-> > }
-> > ~~~
-> > {: .language-groovy}
-> >
-> > ~~~
-> > nextflow run configure_fastp.nf -c fastp.config
-> > ~~~
-> > {: .language-bash}
-> > ~~~
-> > N E X T F L O W  ~  version 21.04.0
-> > Launching `configuration_fastp.nf` [berserk_jepsen] - revision: 28fadd2486
-> > executor >  local (1)
-> > [c1/c207d5] process > FASTP (1) [100%] 1 of 1 ✔
-> > Creating Conda env: bioconda::fastp=0.12.4-0 [cache /home/training/work/conda/env-a7a3a0d820eb46bc41ebf4f72d955e5f]
-> > ref1_1.fq.gz 58708
-> > Read1 before filtering:
-> > total reads: 14677
-> > total bases: 1482377
-> >
-> > Q20 bases: 1466210(98.9094%)
-> > Q30 bases: 1415997(95.5221%)
-> >
-> > Read1 after filtering:
-> > total reads: 14671
-> > total bases: 1481771
-> > Q20 bases: 1465900(98.9289%)
-> > Q30 bases: 1415769(95.5457%)
-> >
-> > Filtering result:
-> > reads passed filter: 14671
-> > reads failed due to low quality: 6
-> > reads failed due to too many N: 0
-> > reads failed due to too short: 0
-> >
-> > JSON report: fastp.json
-> > HTML report: fastp.html
-> > ~~~
-> > {: .output}
-> {: .solution}
-{: .challenge}
-
 ### Software configuration using Docker
 
 Docker is a container technology. Container images are
@@ -782,7 +522,7 @@ which group the attributes that belong to the same profile
 using a common prefix.
 
 ~~~
-//configuration_profiles.config
+//Example1: configuration_profiles.config
 profiles {
 
     standard {
@@ -808,6 +548,72 @@ profiles {
 }
 ~~~
 {: .language-groovy }
+
+<b>Take note</b>: The parameters defined in the nextflow.config file overrides the default parameters inside your nextflow script! However, the command-line parameters even override the nextflow.config file!
+By default, we are running local executor but you can configure your processes to use other executors (slurm, sge, awsbatch, google-lifesciences).
+Nextflow requires a shared storage to exchange data between tasks.
+
+~~~
+// This example defines execution profiles for different environments
+// Example2: configuration_profiles.config
+profiles {
+  slurm {
+    process.container = 'nextflow/rnaseq-nf:latest'
+    process.executor = 'slurm'
+    singularity.enabled = true
+  }
+  standard {
+    process.container = 'nextflow/rnaseq-nf:latest'
+  }
+  awsbatch {
+    process.executor = 'awsbatch'
+    process.queue = 'nextflow-ci'
+    process.container = 'nextflow/rnaseq-nf:latest'
+    workDir = 's3://nextflow-ci/work/'
+    aws.region = 'eu-west-1'
+    aws.batch.cliPath = '/home/ec2-user/miniconda/aws'
+    params.reads = 's3://rnaseq-nf/data/ggal/lung_{1,2}.fq'
+    params.transcriptome = 's3://rnaseq-nf/data/ggal/transcript.fa'
+  }
+  's3-data'{
+    process.container = 'nextflow/rnaseq-nf:latest'
+    params.reads = 's3://rnaseq-nf/data/ggal/lung_{1,2}.fq'
+    params.transcriptome = 's3://rnaseq-nf/data/ggal/transcript.fa'    
+  }
+  gls {
+    process.executor = 'google-lifesciences'
+    process.container = 'nextflow/rnaseq-nf:latest'
+    workDir = 'gs://nfdemo/scratch' // <- replace with your own bucket!
+    google.region = 'europe-west2'
+    params.transcriptome = 'gs://rnaseq-nf/data/ggal/transcript.fa'
+    params.reads = 'gs://rnaseq-nf/data/ggal/gut_{1,2}.fq'
+    params.transcriptome = 'gs://rnaseq-nf/data/multiqc'
+  }
+  conda {
+    process.conda = "$baseDir/conda.yml"
+  }
+}
+
+aws {
+    accessKey = <YOUR S3 ACCESS KEY>
+    secretKey = <YOUR S3 SECRET KEY>
+    region = <AWS REGION IDENTIFIER>
+}
+google {
+    project = 'YOUR PROJECT ID HERE'
+    location = 'us-central1'
+    accessKey = 'YOUR API KEY HERE'
+}
+
+~~~
+{: .language-groovy }
+
+To run your Nexflow script with awsbatch, you can use:
+
+~~~
+$ nextflow run main.nf -profile awsbatch
+~~~
+{: .language-bash}
 
 This configuration defines three different profiles: `standard`,
 `cluster` and `cloud` that set different process configuration

@@ -112,7 +112,10 @@ outdir        : ${params.outdir}
 
 process index {
 
+    // process directives can go here: tag, cpus, memory '', container '/pat/image'
     tag "$transcriptome.simpleName"
+    cpus 2
+    memory '2 GB'
 
     input:
     path transcriptome
