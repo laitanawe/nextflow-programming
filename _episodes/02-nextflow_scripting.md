@@ -401,7 +401,7 @@ process NUM_LINES {
     // directives like cpus, memory can go here:
     cpus 2
     memory '2 GB'
-    time '1 h'
+    time '1h'
 
     input:
     path read
