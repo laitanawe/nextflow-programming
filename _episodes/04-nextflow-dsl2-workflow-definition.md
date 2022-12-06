@@ -20,11 +20,13 @@ keypoints:
 
 We are now going to look at a sample Nextflow DSL2 workflow that performs some RNA-seq tasks.
 
-For the Nextflow course demo, you need to download some files to follow the lesson.
-1. Download <a href="https://laitanawe.github.io/nextflow-novice/data/nextflow-nov-lesson.tar.gz">nextflow-nov-lesson.tar.gz</a>
-2. Make a directory called "nfdemo" on the Desktop
-3. Move the nextflow-nov-lesson.tar.gz inside the nfdemo directory and cd into the nfdemo directory.
-4. Unzip/extract `nextflow-nov-lesson.tar.gz` by typing `tar -xzvf nextflow-nov-lesson.tar.gz`
+For the Nextflow course demo, you need to download some files to follow the lesson. You don't need to redo these steps if you already downloaded the demo files.
+1. Make a directory called "nfdemo" on the Desktop  and cd into the nfdemo directory.
+(To create the demo directory in your Desktop, you can use: `mkdir -pv ~/Desktop/nfdemo`)
+(To cd into the demo directory in your Desktop, you can use: `cd ~/Desktop/nfdemo`)
+2. To ensure that your present working directory is `~/Desktop/nfdemo`, you can use: `cd ~/Desktop/nfdemo`, then download <a href="https://laitanawe.github.io/nextflow-novice/data/nextflow-nov-lesson.tar.gz">nextflow-nov-lesson.tar.gz</a>
+(If wget is installed in your environment, use: `wget https://laitanawe.github.io/nextflow-novice/data/nextflow-nov-lesson.tar.gz`)
+3. Unzip/extract `nextflow-nov-lesson.tar.gz` by typing `tar -xzvf nextflow-nov-lesson.tar.gz`
 You should end up certain files within the folder **`nfdemo/data/ggal`** on your Desktop.
 
 Open the file `main.nf` in the script directory with your favourite text editor.
