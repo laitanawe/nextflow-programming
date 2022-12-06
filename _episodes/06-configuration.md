@@ -667,7 +667,7 @@ FIXME: fill in
 ~~~
 {: .output}
 
-{% include links.md %}
+
 
 ## Additional Nextflow things
 
@@ -676,3 +676,28 @@ FIXME: fill in
 $ nextflow log
 ~~~
 {: .language-bash}
+
+~~~
+TIMESTAMP          	DURATION	RUN NAME            	STATUS	REVISION ID	SESSION ID                          	COMMAND             
+2022-11-26 03:39:58	13s     	extravagant_gates   	OK    	75c1898388 	36b63809-36cc-4b1c-acd8-5ce5becf13fb	nextflow run main.nf
+2022-12-05 16:25:29	3s      	pedantic_wescoff    	ERR   	e99fe11539 	a0876c71-eec9-43ee-ac57-f924404a19e0	nextflow run wc.nf  
+2022-12-05 16:27:49	2.6s    	dreamy_roentgen     	OK    	e99fe11539 	0bef4823-caeb-4642-a012-9563cacd938d	nextflow run wc.nf  
+2022-12-05 16:51:27	2.8s    	hungry_kowalevski   	ERR   	7899ed9c6a 	631044c7-1ac6-41dc-a690-635d46ee27da	nextflow run wc.nf
+~~~
+{: .output}
+
+~~~
+$ nextflow log extravagant_gates -F 'process == /multiqc/'
+~~~
+{: .language-bash}
+
+~~~
+/home/aweo/Desktop/nfdemo/work/83/9ec8858202438d3b7097d8c26912c4
+~~~
+{: .output}
+
+
+
+
+
+{% include links.md %}
