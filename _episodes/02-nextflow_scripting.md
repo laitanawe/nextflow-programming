@@ -358,6 +358,7 @@ Our Script Works!
 
 **Note:** Variable names inside single quoted strings do not support String interpolation.
 
+## Process Directives
 **Note:** You can save the following Nextflow script as wc.nf
 
 ~~~
