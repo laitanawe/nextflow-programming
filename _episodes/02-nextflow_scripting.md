@@ -211,6 +211,7 @@ ATP1B2\TP53\WRAP53
 {: .output }
 
 ### String interpolation
+**Note:** You can save the following Nextflow script as strings.nf
 
 To use a variable inside a single or multi-line double quoted string `""`  prefix the variable name with a `$` to show it should be interpolated:
 
@@ -286,6 +287,8 @@ In the script block, to use a nextflow variable inside a single or multi-line do
 <b>NOTE: b.) Outside the script block</b>:
 Outside the script block and in the Nextflow scope (<i>any area that is not within the script block</i>), `""` is required if you want to interpolate a Nextflow variable using a `$` prefix. Also, in the Nextflow scope, use a Nextflow variable name within the arguments of a groovy function/operator if there's no `""` i.e. you don't need a `$` prefix for interpolation in that case.
 
+**Note:** You can save the following Nextflow script as strings_script.nf
+
 ~~~
 #!/usr/bin/env nextflow
 
@@ -322,7 +325,7 @@ script:
 
  echo ${mystr} #No Quotes, \${} but there is Interpolation.
 
- echo $mystr #Single Quotes, \$ but there is Interpolation.
+ echo $mystr #No Quotes, \$ but there is Interpolation.
 
  """
 }
@@ -359,7 +362,7 @@ Our Script Works!
 **Note:** Variable names inside single quoted strings do not support String interpolation.
 
 ## Process Directives
-**Note:** You can save the following Nextflow script as wc.nf
+**Note:** You can save the following Nextflow script as directives.nf
 
 ~~~
 #!/usr/bin/env nextflow
