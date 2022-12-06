@@ -59,9 +59,9 @@ This is a Nextflow subworkflow (./rnaseq_mods.nf) performing the following steps
 // Save your ./rnaseq_mods.nf script so that it looks like this:
 
     include { index } from './modules/index' // './modules/some_module' //Cut and Paste index block into ./modules/index.nf
-    include { quant } from './modules/quant' // './modules/other_module' //Cut and Paste index block into ./modules/quant.nf
-    include { fastqc } from './modules/fastqc' // './modules/another_more_module' //Cut and Paste index block into ./modules/fastqc.nf
-    include { multiqc } from './modules/multiqc' // './modules/one_more_module' //Cut and Paste index block into ./modules/multiqc.nf. You can also include as an alias e.g. include { multiqc as multiqc_rep } from './modules/multiqc'
+    include { quant } from './modules/quant' // './modules/other_module' //Cut and Paste quant block into ./modules/quant.nf
+    include { fastqc } from './modules/fastqc' // './modules/another_more_module' //Cut and Paste fastqc block into ./modules/fastqc.nf
+    include { multiqc } from './modules/multiqc' // './modules/one_more_module' //Cut and Paste multiqc block into ./modules/multiqc.nf. You can also include as an alias e.g. include { multiqc as multiqc_rep } from './modules/multiqc'
 
 //  The default subworkflow
 workflow rnaseq_sub {
