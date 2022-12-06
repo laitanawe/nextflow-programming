@@ -451,6 +451,7 @@ my_script -m 2 GB -n 2 -t 1h
 
 To store multiple values in a variable we can use a List.
 A List  (also known as array) object can be defined by placing the list items in square brackets and separating items by commas `,`:
+**Note:** You can save the following Nextflow script as lists.nf
 
 ~~~
 kmers = [11,21,27,31]
