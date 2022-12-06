@@ -772,4 +772,53 @@ Hello world!
 ~~~
 {: .output}
 
+<b>Task Execution Caching:</b>
+~~~
+$ nextflow run main.nf
+~~~
+{: .language-bash}
+
+~~~
+N E X T F L O W  ~  version 22.10.1
+Launching `main.nf` [cheeky_raman] DSL2 - revision: 75c1898388
+RNASEQ NEXTFLOW PIPELINE uses the ffg bioinformatics tools: Salmon, FastQC, MultiQC
+transcriptome : /home/hpc_user/Desktop/hpc_user/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa
+reads         : /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_gut_{1,2}.fq
+outdir        : results
+
+executor >  local (4)
+[57/3676c0] process > rnaseq_sub:index (ggal_1_48850000_49020000) [100%] 1 of 1 ✔
+[ce/017ea6] process > rnaseq_sub:fastqc (FASTQC on ggal_gut)      [100%] 1 of 1 ✔
+[87/78e582] process > rnaseq_sub:quant (1)                        [100%] 1 of 1 ✔
+[d0/a66866] process > multiqc                                     [100%] 1 of 1 ✔
+[ggal_gut, /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_gut_1.fq, /home/hpc_user/Desktop/hpc_user/data/ggal/ggal_gut_2.fq]
+[ggal_gut, [/home/hpc_user/Desktop/nfdemo/data/ggal/ggal_gut_1.fq, /home/hpc_user/Desktop/hpc_user/data/ggal/ggal_gut_2.fq]]
+~~~
+{: .output}
+
+~~~
+$ nextflow run main.nf --reads 'data/ggal/ggal_*_{1,2}.fq' -resume
+~~~
+{: .language-bash}
+
+~~~
+N E X T F L O W  ~  version 22.10.1
+Launching `main.nf` [disturbed_panini] DSL2 - revision: 75c1898388
+RNASEQ NEXTFLOW PIPELINE uses the ffg bioinformatics tools: Salmon, FastQC, MultiQC
+transcriptome : /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa
+reads         : data/ggal/ggal_*_{1,2}.fq
+outdir        : results
+
+executor >  local (3)
+[87/4fba91] process > rnaseq_sub:index (ggal_1_48850000_49020000) [100%] 1 of 1, cached: 1 ✔
+[9a/92a372] process > rnaseq_sub:fastqc (FASTQC on ggal_liver)    [100%] 2 of 2, cached: 1 ✔
+[32/c6022a] process > rnaseq_sub:quant (2)                        [100%] 2 of 2, cached: 1 ✔
+[aa/57ea75] process > multiqc                                     [100%] 1 of 1 ✔
+[ggal_gut, [/home/hpc_user/Desktop/nfdemo/data/ggal/ggal_gut_1.fq, /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_gut_2.fq]]
+[ggal_gut, /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_gut_1.fq, /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_gut_2.fq]
+[ggal_liver, [/home/hpc_user/Desktop/nfdemo/data/ggal/ggal_liver_1.fq, /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_liver_2.fq]]
+[ggal_liver, /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_liver_1.fq, /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_liver_2.fq]
+~~~
+{: .output}
+
 {% include links.md %}
