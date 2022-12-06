@@ -558,19 +558,21 @@ Nextflow requires a shared storage to exchange data between tasks.
 // Example2: configuration_profiles.config
 profiles {
   slurm {
-    process.container = 'nextflow/rnaseq-nf:latest'
+    process.container = 'nextflow/rnaseq-nf:latest'  // you can use a local container, '/path/to/image.sif'
     singularity.enabled = true
-    executor = 'slurm'
-    queue = 'compute'
-    time = '8h'
+    process.executor = 'slurm'
+    process.queue = 'compute'
+    process.time = '8h'
     clusterOptions = '-q dev'
     module = ['singularity']
-    memory = '8 GB'
-    cpus = 8
+    process.memory = '8 GB'
+    process.cpus = 8
   }
   standard {
-    process.container = 'nextflow/rnaseq-nf:latest'
-  }
+   singularity.enabled = true
+   process.container = 'nextflow/rnaseq-nf:latest' // you can use a local container, '/path/to/image.sif'
+   process.executor = 'local'
+ }
   awsbatch {
     process.executor = 'awsbatch'
     process.queue = 'nextflow-ci'
@@ -621,17 +623,33 @@ $ nextflow run main.nf -profile awsbatch
 ~~~
 {: .language-bash}
 
-This configuration defines three different profiles: `standard`,
-`cluster` and `cloud` that set different process configuration
+This configuration defines different profiles: `standard`,
+`slurm`, `awsbatch`, `s3-data`, `gls` and `conda` that set different process configuration
 strategies depending on the target execution platform. By
 convention the standard profile is implicitly used when no
 other profile is specified by the user. To enable a specific
 profile use `-profile` option followed by the profile name:
 
 ~~~
-nextflow run <your script> -profile cluster
+nextflow run <your script> -profile standard
 ~~~
 {: .language-bash}
+
+~~~
+nextflow run wc.nf -profile standard
+~~~
+{: .language-bash}
+
+~~~
+N E X T F L O W  ~  version 22.10.1
+Launching `wc.nf` [nasty_hilbert] DSL2 - revision: ed06b3439b
+executor >  local (1)
+[f3/560c2f] process > NUM_LINES (1) [100%] 1 of 1 ✔
+ref1.fa
+Number of lines: 2852 and Number of cpus: 2
+my_script -m 2 GB -n 2 -t 1h
+~~~
+{: .output}
 
 > ## Configuration order
 >
@@ -688,7 +706,7 @@ cpus = 8
 
 ## Additional Nextflow things
 
-<b>Logging</b>
+<b>Nextflow Logging:</b>
 ~~~
 $ nextflow log
 ~~~
@@ -710,6 +728,47 @@ $ nextflow log extravagant_gates -F 'process == /multiqc/'
 
 ~~~
 /home/hpc_user/Desktop/nfdemo/work/83/9ec8858202438d3b7097d8c26912c4
+~~~
+{: .output}
+
+<b>Running Nextflow Pipelines (GitHub):</b>
+~~~
+$ nextflow run https://github.com/nextflow-io/hello
+~~~
+{: .language-bash}
+
+~~~
+N E X T F L O W  ~  version 22.10.1
+Launching `https://github.com/nextflow-io/hello` [clever_euclid] DSL2 - revision: 4eab81bd42 [master]
+executor >  local (4)
+[99/92026c] process > sayHello (2) [100%] 4 of 4 ✔
+Hola world!
+
+Bonjour world!
+
+Hello world!
+
+Ciao world!
+~~~
+{: .output}
+
+~~~
+$ nextflow run nextflow-io/hello -profile standard
+~~~
+{: .language-bash}
+
+~~~
+N E X T F L O W  ~  version 22.10.1
+Launching `https://github.com/nextflow-io/hello` [tender_khorana] DSL2 - revision: 4eab81bd42 [master]
+executor >  local (4)
+[21/257184] process > sayHello (3) [100%] 4 of 4 ✔
+Bonjour world!
+
+Ciao world!
+
+Hola world!
+
+Hello world!
 ~~~
 {: .output}
 
