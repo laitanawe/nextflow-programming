@@ -416,7 +416,7 @@ process NUM_LINES {
     stdout
 
     script:
-    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries.
+    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries. */
     """
     printf '${read}'
     echo
