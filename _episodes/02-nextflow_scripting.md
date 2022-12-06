@@ -486,7 +486,7 @@ println("The last element of kmers is: " + kmers[3])
 
 println("The last element of kmers is: $kmers[-1]")
 
-println("The last element of kmers is: " + kmers[0..2])
+println("The first three element of kmers is: " + kmers[0..2])
 
 println("The last element of kmers is: ${kmers[-1]}")
 
@@ -611,9 +611,13 @@ Listed below are a few more common list methods and their output on a simple exa
 ~~~
 mylist = [1,2,3]
 println mylist
+// concatenate [1] to the existing list
 println mylist + [1]
+// remove [1] from the existing list
 println mylist - [1]
+//duplicate the list
 println mylist * 2
+
 println mylist.reverse()
 println mylist.collect{ it+3 }
 println mylist.unique().size()
