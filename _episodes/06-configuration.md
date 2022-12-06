@@ -603,9 +603,9 @@ profiles {
 }
 
 aws {
-    accessKey = <YOUR S3 ACCESS KEY>
-    secretKey = <YOUR S3 SECRET KEY>
-    region = <AWS REGION IDENTIFIER>
+    accessKey = '<YOUR S3 ACCESS KEY>'
+    secretKey = '<YOUR S3 SECRET KEY>'
+    region = '<AWS REGION IDENTIFIER>'
 }
 google {
     project = 'YOUR PROJECT ID HERE'
