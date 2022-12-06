@@ -322,6 +322,8 @@ script:
 
  echo ${mystr} #No Quotes, \${} but there is Interpolation.
 
+ echo $mystr #Single Quotes, \$ but there is Interpolation.
+
  """
 }
 
@@ -346,6 +348,7 @@ mystr
 Our Script Works!
 Our Script Works!
 {mystr}
+Our Script Works!
 Our Script Works!
 Our Script Works!
 Our Script Works!
