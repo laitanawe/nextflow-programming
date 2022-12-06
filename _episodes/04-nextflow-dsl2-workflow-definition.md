@@ -105,9 +105,9 @@ outdir        : ${params.outdir}
     */
 
     include { index } from './modules/index' // './modules/some_module' //Cut and Paste index block into ./modules/index.nf
-    include { quant } from './modules/quant' // './modules/other_module' //Cut and Paste index block into ./modules/quant.nf
-    include { fastqc } from './modules/fastqc' // './modules/another_more_module' //Cut and Paste index block into ./modules/fastqc.nf
-    include { multiqc } from './modules/multiqc' // './modules/one_more_module' //Cut and Paste index block into ./modules/multiqc.nf
+    include { quant } from './modules/quant' // './modules/other_module' //Cut and Paste quant block into ./modules/quant.nf
+    include { fastqc } from './modules/fastqc' // './modules/another_more_module' //Cut and Paste fastqc block into ./modules/fastqc.nf
+    include { multiqc } from './modules/multiqc' // './modules/one_more_module' //Cut and Paste multiqc block into ./modules/multiqc.nf
 
 //  The default workflow
 workflow {
