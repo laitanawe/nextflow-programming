@@ -559,8 +559,14 @@ Nextflow requires a shared storage to exchange data between tasks.
 profiles {
   slurm {
     process.container = 'nextflow/rnaseq-nf:latest'
-    process.executor = 'slurm'
     singularity.enabled = true
+    executor = 'slurm'
+    queue = 'compute'
+    time = '8h'
+    clusterOptions = '-q dev'
+    module = ['singularity']
+    memory = '8 GB'
+    cpus = 8
   }
   standard {
     process.container = 'nextflow/rnaseq-nf:latest'
@@ -658,12 +664,18 @@ configuration of a workflow. This allows you to see what settings
 Nextflow will use to run a workflow.
 
 ~~~
-$ nextflow config workflow_02.nf -profile test
+$ nextflow config wc.nf -profile slurm
 ~~~
 {: .language-bash}
 
 ~~~
-FIXME: fill in
+N E X T F L O W  ~  version 22.10.1
+Launching `wc.nf` [marvelous_chandrasekhar] DSL2 - revision: ed06b3439b
+executor >  local (1)
+[a9/21a968] process > NUM_LINES (1) [100%] 1 of 1 ✔
+ref1.fa
+Number of lines: 2852 and Number of cpus: 2
+my_script -m 2 GB -n 2 -t 1h
 ~~~
 {: .output}
 
@@ -692,7 +704,7 @@ $ nextflow log extravagant_gates -F 'process == /multiqc/'
 {: .language-bash}
 
 ~~~
-/home/aweo/Desktop/nfdemo/work/83/9ec8858202438d3b7097d8c26912c4
+/home/hpc_user/Desktop/nfdemo/work/83/9ec8858202438d3b7097d8c26912c4
 ~~~
 {: .output}
 

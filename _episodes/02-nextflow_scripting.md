@@ -402,6 +402,8 @@ process NUM_LINES {
     cpus 2
     memory '2 GB'
     time '1h'
+    // each process often has a different container:
+    // container 'biocontainer/bar'
 
     input:
     path read
