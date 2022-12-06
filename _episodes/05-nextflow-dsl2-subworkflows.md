@@ -78,10 +78,12 @@ main:                               // Specify the steps. Each step is typically
 emit:                               // Output(s) of the subworkflow.
   fastqc.out.mix( quant.out ).collect()
 }
+~~~~
+{: .language-groovy}
 
 
-// Copy from the shebang line to the end so that your main.nf script now looks like this:
-
+Copy from the shebang line to the end so that your `main.nf` script now looks like this:
+~~~~
 #!/usr/bin/env nextflow
 
 /* Contributors:
@@ -173,7 +175,7 @@ read_pairs_flat_ch.view()
 ~~~~
 {: .language-groovy}
 
-To run a Nextflow script use the command `nextflow run <script_name>`.
+To run your Nextflow script, use the command `nextflow run main.nf`.
 
 > ## Run a Nextflow  script
 > Run the script by entering the following command in your terminal:
