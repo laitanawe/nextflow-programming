@@ -30,7 +30,7 @@ For the Nextflow course demo, you need to download some files to follow the less
 You should end up certain files within the folder **`nfdemo/data/ggal`** on your Desktop.
 
 
-Open the file `main.nf` in the script directory with your favourite text editor.
+Open the file `main1.nf` in the script directory with your favourite text editor.
 
 This is a Nextflow script. It contains;
 
@@ -226,7 +226,7 @@ To run a Nextflow script use the command `nextflow run <script_name>`.
 > Run the script by entering the following command in your terminal:
 >
 > ~~~
-> $ nextflow run main.nf
+> $ nextflow run main1.nf
 > ~~~
 > {: .language-bash}
 > > ## Solution
@@ -234,7 +234,7 @@ To run a Nextflow script use the command `nextflow run <script_name>`.
 > >
 > > ~~~
 > > N E X T F L O W  ~  version 20.10.0
-> > Launching `main.nf` [sleepy_avogadro] DSL2 - revision: 83e5d597be
+> > Launching `main1.nf` [sleepy_avogadro] DSL2 - revision: 83e5d597be
 > > RNASEQ NEXTFLOW PIPELINE uses the ffg bioinformatics tools: Salmon, FastQC, MultiQC
 > > transcriptome : /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa
 > > reads         : /home/hpc_user/Desktop/nfdemo/data/ggal/ggal_gut_{1,2}.fq
