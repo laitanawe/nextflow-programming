@@ -223,7 +223,7 @@ println("processing chromosome $chr")
 //You don't need the $ prefix before chr because it's unquoted when concatinating as seen below:              
 println("processing chromosome " + chr)
 
-The examples below highlight how to interpolate in Nextflow:
+//The examples below highlight how to interpolate in Nextflow:
 
 var_int = 17
 
