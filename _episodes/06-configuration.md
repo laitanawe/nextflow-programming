@@ -668,3 +668,11 @@ FIXME: fill in
 {: .output}
 
 {% include links.md %}
+
+## Additional Nextflow things
+
+<b>Logging</b>
+~~~
+$ nextflow log
+~~~
+{: .language-bash}
