@@ -83,7 +83,7 @@ This can be confusing for people familiar with the `#` syntax for commenting in 
 ~~~
 {: .language-groovy }
 
-
+items
 ## Variables
 
 In any programming language, you need to use variables to store different types of information. A variable is a pointer to a space in the computer's memory that stores the value associated with it.
