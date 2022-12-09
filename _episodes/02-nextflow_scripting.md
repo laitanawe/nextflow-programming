@@ -463,6 +463,8 @@ You can access a given item in the list with square-bracket notation `[]`. These
 
 ~~~
 kmers = [11,21,27,31]
+
+// Print the first element of kmers
 println(kmers[0])
 
 ~~~
@@ -478,18 +480,24 @@ We can use negative numbers as indices in Groovy. They count from the end of the
 ~~~
 #!/usr/bin/env nextflow
 kmers = [11,21,27,31]
-//Lists can also be indexed with negative indexes
+
+// Print the fourth element of kmers
 println(kmers[3])
+
+//Last element (a list can be indexed with a negative number)
 println(kmers[-1])
 
 println("The last element of kmers is: " + kmers[3])
 
 println("The last element of kmers is: $kmers[-1]")
 
+// Print a range of elements from first to 3rd element
 println("The first three element of kmers is: " + kmers[0..2])
 
+// An example of how to use the curly bracket notation
 println("The last element of kmers is: ${kmers[-1]}")
 
+// Print the second-to-the-last element of kmers
 println("The second-to-the-last element of kmers is: ${kmers[-2]}")
 
 ~~~
