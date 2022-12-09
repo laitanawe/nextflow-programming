@@ -592,11 +592,12 @@ list size is: 3
 ~~~
 {: .output }
 
-We can use the `get` method items to retrieve items in a list.
+We can use the `get` method to retrieve items in a list.
 
 ~~~
 mylist = [100,150,200]
 
+// To retrieve the 2nd item of mylist, you can use any of the following:
 println mylist.get(1)
 
 println "${mylist.get(1)}"
