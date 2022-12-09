@@ -588,6 +588,7 @@ We can use the `get` method items to retrieve items in a list.
 
 ~~~
 mylist = [100,150,200]
+
 println mylist.get(1)
 
 println "${mylist.get(1)}"
@@ -610,24 +611,47 @@ Listed below are a few more common list methods and their output on a simple exa
 
 ~~~
 mylist = [1,2,3]
+
 println mylist
-// concatenate [1] to the existing list
+
+// concatenate the item, [1] to the existing list
 println mylist + [1]
-// remove [1] from the existing list
+
+// remove the item, [1] from the existing list
 println mylist - [1]
-//duplicate the list
+
+//duplicate the existing list
 println mylist * 2
 
+//reverse the order of the items in the existing list
 println mylist.reverse()
+
+//add 3 to each item in the existing list
 println mylist.collect{ it+3 }
+
+//Print the size of the new list if each item is a unique value
 println mylist.unique().size()
+
+//Count the number of times that 1 occurs in the existing list
 println mylist.count(1)
+
+//Minimum value in the existing list
 println mylist.min()
+
+//Maximum value in the existing list
 println mylist.max()
+
+//Sum of the value of items in the existing list
 println mylist.sum()
+
+//Sort the existing list in ascending order
 println mylist.sort()
-println mylist.find{it%2 == 0}
+
+//Print all items that have a remainder 0 when divided by 2
 println mylist.findAll{it%2 == 0}
+
+//.find is a convenience wrapper for .findAll, .findQuery and .findById
+println mylist.find{it%2 == 0}
 ~~~
 {: .language-groovy }
 
