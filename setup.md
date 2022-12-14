@@ -5,9 +5,7 @@ root: .
 ---
 
 ## Download files
-You need to download some files to follow this lesson. You don't need to redo these steps if you already downloaded the demo files.
-
-For the Nextflow lesson, you need to download some files to follow the lesson.
+For the Nextflow course demo, you need to download some files to follow the lesson. You don’t need to redo these steps if you already downloaded the demo files.
 1. Make a directory called "nfdemo" on the Desktop  and cd into the nfdemo directory.
 (To create the demo directory in your Desktop, you can use: `mkdir -pv ~/Desktop/nfdemo`)
 (To cd into the demo directory in your Desktop, you can use: `cd ~/Desktop/nfdemo`)
