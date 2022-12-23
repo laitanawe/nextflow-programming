@@ -406,7 +406,7 @@ workflow {
 process NUM_LINES {
 
     // directives like cpus, memory can go here:
-    cpus 2
+    cpus 2 // cpus, memory and time are a task objects and will eventually be accessed as task.cpus, task.memory, task.time respectively
     memory '2 GB'
     time '1h'
     // each process often has a different container:
