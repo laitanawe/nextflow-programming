@@ -45,7 +45,33 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 `java -version`
 
+## Install Nextflow on Linux
+`mkdir -pv ~/opt/nextflow`
 
+`rm -rfv ~/opt/nextflow/*`
+
+`cd ~/opt/nextflow`
+
+`export NXF_VER=20.04.1`
+
+`curl -fsSL get.nextflow.io | bash`
+
+`mkdir -pv ~/bin`
+
+`ln -sv "$PWD/nextflow" ~/bin/nextflow`
+
+`~/opt/nextflow/nextflow self-update`
+
+`export PATH="$HOME/opt/nextflow:$PATH"`
+
+Next time you login, you will find $HOME/opt/nextflow in your $PATH. If you want this to be the default, you can do this:
+
+## Reload your path for Nextflow
+`echo export PATH="$HOME/opt/nextflow:$PATH" >> ~/.bashrc`
+
+`source ~/.bashrc`
+
+`nextflow -v`
 
 ## Install software
 For a Windows computer, download and install <a href="https://mobaxterm.mobatek.net/download.html">MobaXterm</a>.
