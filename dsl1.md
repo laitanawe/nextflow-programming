@@ -62,7 +62,7 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 `~/opt/nextflow/nextflow info`
 
-`~/opt/nextflow/nextflow self-update`
+
 
 `~/opt/nextflow/nextflow -v`
 
