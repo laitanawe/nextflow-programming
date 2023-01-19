@@ -60,7 +60,11 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 `ln -sv "$PWD/nextflow" ~/bin/nextflow`
 
+`~/opt/nextflow/nextflow info`
+
 `~/opt/nextflow/nextflow self-update`
+
+`~/opt/nextflow/nextflow info`
 
 `export PATH="$HOME/opt/nextflow:$PATH"`
 
