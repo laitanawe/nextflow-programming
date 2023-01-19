@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Setup
+title: Setup for DSL1
 root: .
 ---
 
@@ -11,39 +11,32 @@ For the Nextflow course demo, you need to download some files to follow the less
 (To cd into the demo directory in your Desktop, you can use: `cd ~/Desktop/nfdemo`)
 2. To ensure that your present working directory is `~/Desktop/nfdemo`, you can use: `cd ~/Desktop/nfdemo`, then download <a href="https://laitanawe.github.io/nextflow-programming/data/nextflow-pro-lesson.tar.gz">nextflow-pro-lesson.tar.gz</a>
 (If wget is installed in your environment, use: `wget https://laitanawe.github.io/nextflow-programming/data/nextflow-pro-lesson.tar.gz`)
-3. Unzip/extract `nextflow-pro-lesson.tar.gz` by typing `tar -xzvf nextflow-pro-lesson.tar.gz`
+3. Unzip/extract `nextflow-nov-lesson.tar.gz` by typing `tar -xzvf nextflow-nov-lesson.tar.gz`
 You should end up certain files within the folder **`nfdemo/data/ggal`** on your Desktop.
 
 **Let your instructor know if you need help with this step**.
 
-## Install Java (version between 11 and 18) in your $HOME directory (e.g Java17)
-`mkdir -pv ~/opt/java17`
+## For DSL1, install Java (version 10 or lower) in your $HOME directory (e.g Java1)
+`mkdir -pv ~/opt/java1`
 
-`cd ~/opt/java17`
+`cd ~/opt/java1`
 
-`base_url=https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL`
+`base_url=https://enos.itcollege.ee/~jpoial/allalaadimised/jdk8`
 
-`wget $base_url/openjdk-17.0.2_linux-x64_bin.tar.gz`
-
-`wget $base_url/openjdk-17.0.2_linux-x64_bin.tar.gz.sha256`
-
-## Check if the checksums match before proceeding:
-`sha256sum openjdk-17.0.2_linux-x64_bin.tar.gz`
-
-`cat openjdk-17.0.2_linux-x64_bin.tar.gz.sha256 && echo`
+`wget $base_url/jdk-8u341-linux-x64.tar.gz`
 
 ## Unpack and put links to the executables in a common directory in your $PATH::
-`tar -xzf openjdk-17.0.2_linux-x64_bin.tar.gz`
+`tar -xzf jdk-8u341-linux-x64.tar.gz`
 
-`rm -v openjdk-17.0.2_linux-x64_bin.tar.gz*`
+`rm -v jdk-8u341-linux-x64.tar.gz*`
 
-`mv -fv jdk-17.0.2/* .`
+`mv -fv jdk1.8.0_341/* .`
 
-`rmdir jdk-17.0.2`
+`rmdir jdk1.8.0_341`
 
 `mkdir -pv ~/bin`
 
-`ln -sfv ~/opt/java17/bin/* ~/bin/`
+`ln -sfv ~/opt/java1/bin/* ~/bin/`
 
 ## If not in $PATH, add this to bottom of ~/.bashrc, then exit and reload your $PATH:
 `echo export PATH=$HOME/bin:$PATH >> ~/.bashrc`
