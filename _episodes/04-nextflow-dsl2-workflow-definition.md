@@ -26,7 +26,7 @@ For the Nextflow course demo, you need to download some files to follow the less
 (To cd into the demo directory in your Desktop, you can use: `cd ~/Desktop/nfdemo`)
 2. To ensure that your present working directory is `~/Desktop/nfdemo`, you can use: `cd ~/Desktop/nfdemo`, then download <a href="https://laitanawe.github.io/nextflow-programming/data/nextflow-pro-lesson.tar.gz">nextflow-pro-lesson.tar.gz</a>
 (If wget is installed in your environment, use: `wget https://laitanawe.github.io/nextflow-programming/data/nextflow-pro-lesson.tar.gz`)
-3. Unzip/extract `nextflow-nov-lesson.tar.gz` by typing `tar -xzvf nextflow-nov-lesson.tar.gz`
+3. Unzip/extract `nextflow-pro-lesson.tar.gz` by typing `tar -xzvf nextflow-pro-lesson.tar.gz`
 You should end up certain files within the folder **`nfdemo/data/ggal`** on your Desktop.
 
 Open the file `main.nf` in the script directory with your favourite text editor.
