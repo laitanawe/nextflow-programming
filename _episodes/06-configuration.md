@@ -45,7 +45,7 @@ configuration file.
 Settings in a configuration file are sets of name-value pairs
 (`name = value`). The `name` is a specific property to set,
 while the `value` can be anything you can assign to a variable (see
-[nextflow scripting](02-nextflow_scripting)), for example, strings,
+[nextflow scripting]("https://laitanawe.github.io/nextflow-programming/02-nextflow_scripting/")), for example, strings,
 booleans, or other variables.
 It is also possible to access any variable defined in the
 host environment such as `$PATH`, `$HOME`, `$PWD`, etc.
