@@ -91,7 +91,7 @@ outdir        : ${params.outdir}
     or providing useful information such as workflow usage.
 
     Usage:
-       nextflow run wc.nf --input <input_file>
+       nextflow run main.nf --input <input_file>
 
     Multi-line comments start with a slash asterisk /* and finish with an asterisk slash. */
 //  Single line comments start with a double slash // and finish on the same line
