@@ -533,7 +533,7 @@ println(kmers[0..2])
 
 ### String interpolation of list elements
 
-To use an expression like `kmer[0..2]` inside a double-quoted string `""`, we use the `${expression}` syntax, similar to Bash shell scripts.
+To use an expression like `kmer[0..2]` inside a double-quoted string `""`, we use the `${expression}` syntax, similar to Bash shell scripts. You can save the following as <b>kmers.nf</b>
 
 For example, the expression below without the `{}`""
 
